@@ -1,1 +1,1 @@
-Download the `v8.pickle` from [link]() and put it in this directory.
+Download the `v8.pickle` from [link](https://drive.google.com/file/d/1I1XvvM5lYX21pbqnuahOW9BFdC7KXUQ7/view?usp=sharing) and put it in this directory.

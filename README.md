@@ -26,7 +26,7 @@ Ubuntu 20.04.6 LTS with a 12GB GPU (we use a NVIDIA GeForce RTX 3080 Ti)
 2. Download datasets (links mentioned before)
 3. Remake training datasets
     
-    You can use the pickle we have made during our training at `./traning_dataset_pickle/v8.pickle`, or remake a new training dataset by:
+    You can use the pickle we have made during our training at `./traning_dataset_pickle/v8.pickle` (you need to download it first, see [here](https://github.com/n13eho/Schaferct/blob/main/training_dataset_pickle/README.md) for detail), or remake a new training dataset by:
     
     1. Rearrange the datasets by different type of behavior policy. Before run this script (`reorganize_by_policy_id.py`), you need to modify the two path of your downloaded datasets.
         
@@ -72,13 +72,13 @@ Ubuntu 20.04.6 LTS with a 12GB GPU (we use a NVIDIA GeForce RTX 3080 Ti)
     
     1. To run a small evaluation on a [small dataset](https://github.com/microsoft/RL4BandwidthEstimationChallenge/tree/main/data): (download the 24 sessions and modify their path first)
         
-        ```python
+        ```bash
         python detail_evaluate_on_24_sessions.py
         ```
         
     2. To evaluate the metrics (mse, errorate) over all evaluation dataset:
         
-        ```python
+        ```bash
         python evaluate_all.py
         ```
         
