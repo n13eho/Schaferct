@@ -1,0 +1,8 @@
+matplotlib==3.8.2
+numpy==1.26.4
+onnxruntime==1.16.3
+pandas==2.2.1
+pyrallis==0.3.1
+scikit_learn==1.4.1.post1
+torch==2.1.2
+tqdm==4.66.1

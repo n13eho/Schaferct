@@ -22,7 +22,7 @@ import json
 import onnxruntime as ort
 
 TensorBatch = List[torch.Tensor]
-pickle_path = '../v8.pickle'
+pickle_path = '../training_dataset_pickle/v8.pickle'
 evaluation_dataset_path = '../ALLdatasets/evaluate'
 ENUM = 20  # every 5 evaluation set
 small_evaluation_datasets = []
@@ -33,7 +33,7 @@ for p_t in policy_dir_names:
         e_f_path = os.path.join(policy_type_dir, e_f_name)
         small_evaluation_datasets.append(e_f_path)
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 USE_WANDB = 1
 b_in_Mb = 1e6
 
@@ -68,7 +68,7 @@ class TrainConfig:
     actor_lr: float = 3e-4  # Actor learning rate
     actor_dropout: Optional[float] = None  # Adroit uses dropout for policy network
     # Wandb logging
-    project: str = "BWEC"
+    project: str = "BWEC-Schaferct"
     group: str = "IQL"
     name: str = "IQL"
 
@@ -284,8 +284,8 @@ class GaussianPolicy(nn.Module):
         mean = self.rb2(mean) + mem2
         mean = self.final(mean)
 ###
-        mean = mean * self.max_action * 1e6
-        mean = mean.clamp(min = 10)
+        mean = mean * self.max_action * 1e6  # Mbps -> bps
+        mean = mean.clamp(min = 10)  # larger than 10bps
         std = torch.exp(self.log_std.clamp(LOG_STD_MIN, LOG_STD_MAX))
         std = std.expand(mean.shape[0], 1)
         ret = torch.cat((mean, std), 1)
